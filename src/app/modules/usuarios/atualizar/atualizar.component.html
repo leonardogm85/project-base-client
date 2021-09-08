@@ -1,0 +1,15 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light mb-2">
+    <li class="breadcrumb-item"><a routerLink="/usuarios">Usuários</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Atualizar</li>
+  </ol>
+</nav>
+
+<div class="card">
+  <div class="card-header">
+    <fa-icon [icon]="iconUpdate" class="mr-1"></fa-icon>Alteração de usuários
+  </div>
+  <div class="card-body">
+    <app-formulario [form]="form" [notificationResult]="notificationResult" (save)="onSubmit()"></app-formulario>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<nav *ngIf="isAuthenticated"
+  class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-3 shadow-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home">Projeto base</a>
+    <button type="button" class="navbar-toggler" (click)="onCollapse()" [attr.aria-expanded]="expanded"
+      aria-controls="navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="collapsed">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown mr-2" ngbDropdown *ngFor="let menu of menus; let i = index;">
+          <button class="btn btn-outline-light nav-link dropdown-toggle" [id]="menu.code" ngbDropdownToggle>
+            {{ menu.description }}
+          </button>
+          <div class="dropdown-menu" [attr.aria-labelledby]="menu.code" ngbDropdownMenu>
+            <a class="dropdown-item" ngbDropdownItem [routerLink]="item.address" (click)="markAsCollapsed()"
+              *ngFor="let item of menu.items">
+              {{ item.description }}
+            </a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown" ngbDropdown>
+          <button class="btn btn-outline-light nav-link dropdown-toggle" id="navbarDropdown-n" ngbDropdownToggle>
+            {{ userName }}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown-n" ngbDropdownMenu>
+            <a class="dropdown-item" ngbDropdownItem routerLink="/contas/atualizar-conta"
+              (click)="markAsCollapsed()">Atualizar conta</a>
+            <a class="dropdown-item" ngbDropdownItem routerLink="/contas/atualizar-senha"
+              (click)="markAsCollapsed()">Atualizar senha</a>
+            <a class="dropdown-item" ngbDropdownItem routerLink="/contas/entrar" (click)="onLogout()">Sair</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

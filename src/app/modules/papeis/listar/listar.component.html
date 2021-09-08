@@ -1,0 +1,133 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light mb-2">
+    <li class="breadcrumb-item active" aria-current="page">Papéis</li>
+  </ol>
+</nav>
+
+<div class="row mb-2" *appAuthorizedCreate>
+  <div class="col-lg-12">
+    <a routerLink="/papeis/adicionar" class="btn btn-primary">
+      <fa-icon [icon]="iconCreate" class="mr-1"></fa-icon>Adicionar
+    </a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <fa-icon [icon]="iconTable" class="mr-1"></fa-icon>Lista de papéis
+  </div>
+  <div class="card-body">
+
+    <div *ngIf="tableResult">
+
+      <table class="table table-hover table-striped table-sm border-bottom w-100 default-table">
+        <thead>
+          <tr>
+            <th scope="col" class="col-30" sortable="Name" (sort)="onSort($event)">Nome</th>
+            <th scope="col" class="col-70" sortable="Description" (sort)="onSort($event)">Descrição</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+          <tr>
+            <th>
+              <input class="form-control form-control-sm w-100" placeholder="Nome" autocomplete="off" searchable="Name"
+                (search)="onSearch($event)">
+            </th>
+            <th>
+              <input class="form-control form-control-sm w-100" placeholder="Descrição" autocomplete="off"
+                searchable="Description" (search)="onSearch($event)">
+            </th>
+            <th colspan="5"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <div *ngIf="tableResult.recordsFiltered === 0; then thenFiltered else elseFiltered"></div>
+
+          <ng-template #thenFiltered>
+            <tr>
+              <td colspan="7" class="text-center">
+                Nenhum registro encontrado.
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template #elseFiltered>
+            <tr *ngFor="let papel of tableResult.data">
+              <td>{{ papel.name }}</td>
+              <td>{{ papel.description }}</td>
+              <td>
+                <div *appAuthorizedUpdate>
+                  <a *ngIf="papel.active" [routerLink]="['/papeis/adicionar-autorizacoes', papel.id]"
+                    class="btn btn-outline-secondary btn-sm" ngbTooltip="Adicionar autorizações ao registro">
+                    <fa-icon [icon]="iconAuthorize"></fa-icon>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <div *appAuthorizedUpdate>
+                  <div *ngIf="papel.active; then thenActive else elseActive"></div>
+
+                  <ng-template #thenActive>
+                    <button class="btn btn-outline-danger btn-sm" ngbTooltip="Desativar o registro"
+                      (click)="onDeactivate(papel.id)">
+                      <fa-icon [icon]="iconDeactivate"></fa-icon>
+                    </button>
+                  </ng-template>
+
+                  <ng-template #elseActive>
+                    <button class="btn btn-outline-success btn-sm" ngbTooltip="Ativar o registro"
+                      (click)="onActivate(papel.id)">
+                      <fa-icon [icon]="iconActivate"></fa-icon>
+                    </button>
+                  </ng-template>
+                </div>
+              </td>
+              <td>
+                <a [routerLink]="['/papeis/visualizar', papel.id]" class="btn btn-info btn-sm"
+                  ngbTooltip="Visualizar o registro">
+                  <fa-icon [icon]="iconRead"></fa-icon>
+                </a>
+              </td>
+              <td>
+                <div *appAuthorizedUpdate>
+                  <a *ngIf="papel.active" [routerLink]="['/papeis/atualizar', papel.id]" class="btn btn-warning btn-sm"
+                    ngbTooltip="Atualizar o registro">
+                    <fa-icon [icon]="iconUpdate"></fa-icon>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <button class="btn btn-danger btn-sm" ngbTooltip="Remover o registro" (click)="onDelete(papel.id)"
+                  *appAuthorizedDelete>
+                  <fa-icon [icon]="iconRemove"></fa-icon>
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="font-weight-bold">Nome</td>
+            <td class="font-weight-bold">Descrição</td>
+            <td class="font-weight-bold" colspan="5"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="row">
+        <app-information class="col-lg mb-3" [start]="tableFilter.start" [length]="tableFilter.length"
+          [recordsFiltered]="tableResult.recordsFiltered" [recordsTotal]="tableResult.recordsTotal">
+        </app-information>
+
+        <app-pagination class="col-lg d-flex justify-content-end" [start]="tableFilter.start"
+          [length]="tableFilter.length" [recordsFiltered]="tableResult.recordsFiltered" (page)="onPage($event)">
+        </app-pagination>
+      </div>
+
+    </div>
+
+  </div>
+</div>

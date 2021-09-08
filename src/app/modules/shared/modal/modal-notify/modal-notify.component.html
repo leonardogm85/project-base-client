@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">{{ title }}</h4>
+  <button type="button" class="close" aria-describedby="modal-title" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <ul class="list-unstyled m-0">
+    <li *ngFor="let notification of notifications">{{ notification.message }}</li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="onOk()">Ok</button>
+</div>

@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-5">
+
+    <div class="card">
+      <div class="card-header">
+        <fa-icon [icon]="iconUser" class="mr-1"></fa-icon>Login
+      </div>
+      <div class="card-body">
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+          <app-validation-summary [result]="notificationResult"></app-validation-summary>
+
+          <h4>Use uma conta para fazer login.</h4>
+          <hr />
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" formControlName="email" class="form-control" />
+            <app-validation-message [control]="form.get('email')"></app-validation-message>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" formControlName="password" class="form-control" />
+            <app-validation-message [control]="form.get('password')"></app-validation-message>
+          </div>
+
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" id="isPersistent" formControlName="isPersistent" class="custom-control-input" />
+              <label for="isPersistent" class="custom-control-label">Ficar conectado</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="float-right">
+              <button type="submit" class="btn btn-primary">Login</button>
+              <a routerLink="/contas/esqueceu-senha" class="btn btn-secondary ml-1">Esqueceu sua senha?</a>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>

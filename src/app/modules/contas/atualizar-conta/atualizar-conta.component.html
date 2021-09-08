@@ -1,0 +1,48 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light mb-2">
+    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Atualizar conta</li>
+  </ol>
+</nav>
+
+<div class="card">
+  <div class="card-header">
+    <fa-icon [icon]="iconUpdate" class="mr-1"></fa-icon>Alteração da conta
+  </div>
+  <div class="card-body">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+      <app-validation-summary [result]="notificationResult"></app-validation-summary>
+
+      <div class="form-row">
+        <div class="form-group col-lg-6">
+          <label for="name">Nome</label>
+          <input id="name" formControlName="name" class="form-control" />
+          <app-validation-message [control]="form.get('name')"></app-validation-message>
+        </div>
+
+        <div class="form-group col-lg-4">
+          <label for="email">Email</label>
+          <input id="email" formControlName="email" class="form-control" />
+          <app-validation-message [control]="form.get('email')"></app-validation-message>
+        </div>
+
+        <div class="form-group col-lg-2">
+          <label for="phoneNumber">Telefone</label>
+          <input id="phoneNumber" formControlName="phoneNumber" class="form-control" (input)="onInputPhoneNumber()"
+            [mask]="maskPhoneNumber" [dropSpecialCharacters]="false" />
+          <app-validation-message [control]="form.get('phoneNumber')"></app-validation-message>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="float-right">
+          <button type="submit" class="btn btn-primary">
+            <fa-icon [icon]="iconSave" class="mr-1"></fa-icon>Salvar
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

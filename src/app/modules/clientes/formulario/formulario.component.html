@@ -1,0 +1,120 @@
+<form [formGroup]="form" (ngSubmit)="onSave()" autocomplete="off">
+  <app-validation-summary [result]="notificationResult"></app-validation-summary>
+
+  <div class="form-row">
+    <div class="form-group col-lg-2">
+      <label for="tipoPessoa">Tipo de pessoa</label>
+      <ng-select formControlName="tipoPessoa" class="default-select" labelForId="tipoPessoa" bindValue="key"
+        bindLabel="value" [items]="selectResult.data" (change)="clearValueDocument()"></ng-select>
+      <app-validation-message [control]="form.get('tipoPessoa')"></app-validation-message>
+    </div>
+
+    <div class="form-group col-lg-2">
+      <label for="documento">CPF / CNPJ</label>
+      <input id="documento" formControlName="documento" class="form-control" [mask]="maskDocumento"
+        [dropSpecialCharacters]="false" />
+      <app-validation-message [control]="form.get('documento')"></app-validation-message>
+    </div>
+
+    <div class="form-group col-lg-4">
+      <label for="apelido">Apelido / Nome fantasia</label>
+      <input id="apelido" formControlName="apelido" class="form-control" />
+      <app-validation-message [control]="form.get('apelido')"></app-validation-message>
+    </div>
+
+    <div class="form-group col-lg-4">
+      <label for="nome">Nome / Razão social</label>
+      <input id="nome" formControlName="nome" class="form-control" />
+      <app-validation-message [control]="form.get('nome')"></app-validation-message>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-lg-4">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" class="form-control" />
+      <app-validation-message [control]="form.get('email')"></app-validation-message>
+    </div>
+
+    <div class="form-group col-lg-2">
+      <label for="celular">Celular</label>
+      <input id="celular" formControlName="celular" class="form-control" [mask]="maskCelular"
+        [dropSpecialCharacters]="false" />
+      <app-validation-message [control]="form.get('celular')"></app-validation-message>
+    </div>
+
+    <div class="form-group col-lg-2">
+      <label for="telefone">Telefone</label>
+      <input id="telefone" formControlName="telefone" class="form-control" [mask]="maskTelefone"
+        [dropSpecialCharacters]="false" />
+      <app-validation-message [control]="form.get('telefone')"></app-validation-message>
+    </div>
+  </div>
+
+  <div formGroupName="endereco">
+    <div class="form-row">
+      <div class="form-group col-lg-2">
+        <label for="cep">CEP</label>
+        <div class="input-group">
+          <input id="cep" formControlName="cep" class="form-control" [mask]="maskCep" [dropSpecialCharacters]="false" />
+          <div class="input-group-append">
+            <button type="button" class="btn btn-secondary" ngbTooltip="Obter endereço por CEP"
+              (click)="findAddressByZipCode()">
+              <fa-icon [icon]="iconSearch"></fa-icon>
+            </button>
+          </div>
+        </div>
+        <app-validation-message [control]="form.get('endereco.cep')"></app-validation-message>
+      </div>
+
+      <div class="form-group col-lg-6">
+        <label for="logradouro">Logradouro</label>
+        <input id="logradouro" formControlName="logradouro" class="form-control" />
+        <app-validation-message [control]="form.get('endereco.logradouro')"></app-validation-message>
+      </div>
+
+      <div class="form-group col-lg-2">
+        <label for="numero">Número</label>
+        <input id="numero" formControlName="numero" class="form-control" [mask]="maskNumero" />
+        <app-validation-message [control]="form.get('endereco.numero')"></app-validation-message>
+      </div>
+
+      <div class="form-group col-lg-2">
+        <label for="complemento">Complemento</label>
+        <input id="complemento" formControlName="complemento" class="form-control" />
+        <app-validation-message [control]="form.get('endereco.complemento')"></app-validation-message>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-lg-5">
+        <label for="bairro">Bairro</label>
+        <input id="bairro" formControlName="bairro" class="form-control" />
+        <app-validation-message [control]="form.get('endereco.bairro')"></app-validation-message>
+      </div>
+
+      <div class="form-group col-lg-5">
+        <label for="cidade">Cidade</label>
+        <input id="cidade" formControlName="cidade" class="form-control" />
+        <app-validation-message [control]="form.get('endereco.cidade')"></app-validation-message>
+      </div>
+
+      <div class="form-group col-lg-2">
+        <label for="estado">Estado</label>
+        <input id="estado" formControlName="estado" class="form-control" />
+        <app-validation-message [control]="form.get('endereco.estado')"></app-validation-message>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="float-right">
+      <button type="submit" class="btn btn-primary">
+        <fa-icon [icon]="iconSave" class="mr-1"></fa-icon>Salvar
+      </button>
+      <a routerLink="/clientes" class="btn btn-secondary ml-1">
+        <fa-icon [icon]="iconReturn" class="mr-1"></fa-icon>Voltar
+      </a>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,57 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light mb-2">
+    <li class="breadcrumb-item"><a routerLink="/produtos">Produtos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Visualizar</li>
+  </ol>
+</nav>
+
+<div class="card">
+  <div class="card-header">
+    <fa-icon [icon]="iconSearch" class="mr-1"></fa-icon>Visualização de produto
+    <span class="float-right text-muted">{{ descricaoAtivo }}</span>
+  </div>
+  <div class="card-body">
+
+    <fieldset disabled>
+
+      <div class="form-row">
+        <div class="form-group col-lg-4">
+          <label for="nome">Nome</label>
+          <input id="nome" class="form-control" [value]="model?.nome" />
+        </div>
+
+        <div class="form-group col-lg-8">
+          <label for="descricao">Descrição</label>
+          <input id="descricao" class="form-control" [value]="model?.descricao" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-lg-2">
+          <label for="valor">Valor</label>
+          <input id="valor" class="form-control" [value]="model?.valor | mask: maskValor" />
+        </div>
+
+        <div class="form-group col-lg-2">
+          <label for="unidadeMedidaId">Unidade de Medida</label>
+          <input id="unidadeMedidaId" class="form-control" [value]="descricaoUnidadeMedida" />
+        </div>
+
+        <div class="form-group col-lg-8">
+          <label for="fornecedorId">Fornecedor</label>
+          <input id="fornecedorId" class="form-control" [value]="descricaoFornecedor" />
+        </div>
+      </div>
+
+    </fieldset>
+
+    <div class="form-group">
+      <div class="float-right">
+        <a routerLink="/produtos" class="btn btn-secondary ml-1">
+          <fa-icon [icon]="iconReturn" class="mr-1"></fa-icon>Voltar
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

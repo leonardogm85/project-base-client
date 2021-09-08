@@ -1,0 +1,84 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light mb-2">
+    <li class="breadcrumb-item"><a routerLink="/papeis">Papéis</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Visualizar</li>
+  </ol>
+</nav>
+
+<div class="card">
+  <div class="card-header">
+    <fa-icon [icon]="iconSearch" class="mr-1"></fa-icon>Visualização de papel
+    <span class="float-right text-muted">{{ descricaoAtivo }}</span>
+  </div>
+  <div class="card-body">
+
+    <fieldset disabled>
+
+      <div class="form-row">
+        <div class="form-group col-lg-4">
+          <label for="name">Nome</label>
+          <input id="name" class="form-control" [value]="model?.name" />
+        </div>
+
+        <div class="form-group col-lg-8">
+          <label for="description">Descrição</label>
+          <input id="description" class="form-control" [value]="model?.description" />
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <div *ngIf="menus && menus.length !== 0; then thenResult else elseEmpty"></div>
+
+        <ng-template #thenResult>
+          <ul class="list-group" *ngFor="let menu of menus; let menuIndex = index">
+            <li class="list-group-item bg-light text-muted mb-1" *ngIf="menuIndex === 0">
+              <fa-icon [icon]="iconAuthorize" class="mr-1"></fa-icon>Autorizações
+            </li>
+            <li class="list-group-item text-muted mt-1 mb-1">
+              {{ menu.description }}
+            </li>
+
+            <li class="list-group-item" *ngFor="let item of menu.items">
+              <div class="form-row">
+                <div class="col-lg-4 text-muted">
+                  {{ item.description }}
+                </div>
+
+                <div class="col-lg-2" *ngFor="let access of item.accesses">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" [checked]="access.enabled" />
+                    <label class="custom-control-label custom-control-label-disabled">
+                      {{ access.description }}
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+        </ng-template>
+
+        <ng-template #elseEmpty>
+          <ul class="list-group">
+            <li class="list-group-item bg-light text-muted">
+              <fa-icon [icon]="iconAuthorize" class="mr-1"></fa-icon>Nenhuma autorização encontrada.
+            </li>
+          </ul>
+        </ng-template>
+
+      </div>
+
+    </fieldset>
+
+    <div class="form-group">
+      <div class="float-right">
+        <a routerLink="/papeis" class="btn btn-secondary ml-1">
+          <fa-icon [icon]="iconReturn" class="mr-1"></fa-icon>Voltar
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

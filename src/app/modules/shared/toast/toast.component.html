@@ -1,0 +1,4 @@
+<ngb-toast *ngFor="let toast of list(); let i = index" [ngClass]="getClass(toast.type)" [autohide]="autoHide"
+  [delay]="delay" (hide)="remove(i)">
+  {{toast.message}}
+</ngb-toast>

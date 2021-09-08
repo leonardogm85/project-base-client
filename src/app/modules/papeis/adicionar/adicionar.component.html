@@ -1,0 +1,15 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light mb-2">
+    <li class="breadcrumb-item"><a routerLink="/papeis">Papéis</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Adicionar</li>
+  </ol>
+</nav>
+
+<div class="card">
+  <div class="card-header">
+    <fa-icon [icon]="iconCreate" class="mr-1"></fa-icon>Inclusão de papel
+  </div>
+  <div class="card-body">
+    <app-formulario [form]="form" [notificationResult]="notificationResult" (save)="onSubmit()"></app-formulario>
+  </div>
+</div>

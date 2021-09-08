@@ -1,0 +1,80 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light mb-2">
+    <li class="breadcrumb-item"><a routerLink="/papeis">Papéis</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Adicionar autorizações</li>
+  </ol>
+</nav>
+
+<div class="card">
+  <div class="card-header">
+    <fa-icon [icon]="iconAutorize" class="mr-1"></fa-icon>Autorizações do papel
+    <span class="float-right text-muted">{{ getRoleNameValue() }}</span>
+  </div>
+  <div class="card-body">
+
+    <form [formGroup]="form" (ngSubmit)="onSave()" autocomplete="off">
+      <app-validation-summary [result]="notificationResult"></app-validation-summary>
+
+      <div formArrayName="menus">
+        <ul class="list-group mb-3" *ngFor="let menu of getMenus(); let menuIndex = index" [formGroupName]="menuIndex">
+          <li class="list-group-item bg-light mb-1">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" formControlName="enabled" [id]="getCodeValue(menu)"
+                (change)="onMenu(menu)" />
+              <label class="custom-control-label text-muted" [for]="getCodeValue(menu)">
+                {{ getDescriptionValue(menu) }}
+              </label>
+            </div>
+          </li>
+
+          <div formArrayName="items">
+            <li class="list-group-item" *ngFor="let item of getItems(menu); let itemIndex = index"
+              [formGroupName]="itemIndex">
+              <div class="form-row">
+                <div class="col-lg-4">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" formControlName="enabled"
+                      [id]="getCodeValue(item)" (change)="onItem(item)" />
+                    <label class="custom-control-label text-muted" [for]="getCodeValue(item)">
+                      {{ getDescriptionValue(item) }}
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-8">
+
+                  <div class="form-row" formArrayName="accesses">
+                    <div class="col-lg-3" *ngFor="let access of getAccesses(item); let accessIndex = index"
+                      [formGroupName]="accessIndex">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [id]="getCodeValue(access)"
+                          formControlName="enabled" (change)="onAccess(access)" />
+                        <label class="custom-control-label" [for]="getCodeValue(access)">
+                          {{ getDescriptionValue(access) }}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </li>
+          </div>
+
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <div class="float-right">
+          <button type="submit" class="btn btn-primary">
+            <fa-icon [icon]="iconSave" class="mr-1"></fa-icon>Salvar
+          </button>
+          <a routerLink="/papeis" class="btn btn-secondary ml-1">
+            <fa-icon [icon]="iconReturn" class="mr-1"></fa-icon>Voltar
+          </a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

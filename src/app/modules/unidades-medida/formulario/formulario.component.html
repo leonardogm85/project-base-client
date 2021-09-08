@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="onSave()" autocomplete="off">
+  <app-validation-summary [result]="notificationResult"></app-validation-summary>
+
+  <div class="form-row">
+    <div class="form-group col-lg-10">
+      <label for="nome">Nome</label>
+      <input id="nome" formControlName="nome" class="form-control" />
+      <app-validation-message [control]="form.get('nome')"></app-validation-message>
+    </div>
+
+    <div class="form-group col-lg-2">
+      <label for="sigla">Sigla</label>
+      <input id="sigla" formControlName="sigla" class="form-control" />
+      <app-validation-message [control]="form.get('sigla')"></app-validation-message>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="float-right">
+      <button type="submit" class="btn btn-primary">
+        <fa-icon [icon]="iconSave" class="mr-1"></fa-icon>Salvar
+      </button>
+      <a routerLink="/unidades-medida" class="btn btn-secondary ml-1">
+        <fa-icon [icon]="iconReturn" class="mr-1"></fa-icon>Voltar
+      </a>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,106 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light mb-2">
+    <li class="breadcrumb-item"><a routerLink="/clientes">Clientes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Visualizar</li>
+  </ol>
+</nav>
+
+<div class="card">
+  <div class="card-header">
+    <fa-icon [icon]="iconSearch" class="mr-1"></fa-icon>Visualização de cliente
+    <span class="float-right text-muted">{{ descricaoAtivo }}</span>
+  </div>
+  <div class="card-body">
+
+    <fieldset disabled>
+
+      <div class="form-row">
+        <div class="form-group col-lg-2">
+          <label for="tipoPessoa">Tipo de pessoa</label>
+          <input id="tipoPessoa" class="form-control" [value]="descricaoTipoPessoa" />
+        </div>
+
+        <div class="form-group col-lg-2">
+          <label for="documento">CPF / CNPJ</label>
+          <input id="documento" class="form-control" [value]="model?.documento" />
+        </div>
+
+        <div class="form-group col-lg-4">
+          <label for="apelido">Apelido / Nome fantasia</label>
+          <input id="apelido" class="form-control" [value]="model?.apelido" />
+        </div>
+
+        <div class="form-group col-lg-4">
+          <label for="nome">Nome / Razão social</label>
+          <input id="nome" class="form-control" [value]="model?.nome" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-lg-4">
+          <label for="email">Email</label>
+          <input id="email" class="form-control" [value]="model?.email" />
+        </div>
+
+        <div class="form-group col-lg-2">
+          <label for="celular">Celular</label>
+          <input id="celular" class="form-control" [value]="model?.celular" />
+        </div>
+
+        <div class="form-group col-lg-2">
+          <label for="telefone">Telefone</label>
+          <input id="telefone" class="form-control" [value]="model?.telefone" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-lg-2">
+          <label for="cep">CEP</label>
+          <input id="cep" class="form-control" [value]="model?.endereco?.cep" />
+        </div>
+
+        <div class="form-group col-lg-6">
+          <label for="logradouro">Logradouro</label>
+          <input id="logradouro" class="form-control" [value]="model?.endereco?.logradouro" />
+        </div>
+
+        <div class="form-group col-lg-2">
+          <label for="numero">Número</label>
+          <input id="numero" class="form-control" [value]="model?.endereco?.numero" />
+        </div>
+
+        <div class="form-group col-lg-2">
+          <label for="complemento">Complemento</label>
+          <input id="complemento" class="form-control" [value]="model?.endereco?.complemento" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-lg-5">
+          <label for="bairro">Bairro</label>
+          <input id="bairro" class="form-control" [value]="model?.endereco?.bairro" />
+        </div>
+
+        <div class="form-group col-lg-5">
+          <label for="cidade">Cidade</label>
+          <input id="cidade" class="form-control" [value]="model?.endereco?.cidade" />
+        </div>
+
+        <div class="form-group col-lg-2">
+          <label for="estado">Estado</label>
+          <input id="estado" class="form-control" [value]="model?.endereco?.estado" />
+        </div>
+      </div>
+
+    </fieldset>
+
+    <div class="form-group">
+      <div class="float-right">
+        <a routerLink="/clientes" class="btn btn-secondary ml-1">
+          <fa-icon [icon]="iconReturn" class="mr-1"></fa-icon>Voltar
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

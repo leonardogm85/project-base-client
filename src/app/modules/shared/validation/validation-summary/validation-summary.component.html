@@ -1,0 +1,8 @@
+<div class="alert alert-danger" role="alert" *ngIf="invalid">
+  <h4 class="alert-heading">
+    <fa-icon [icon]="iconSummary" class="mr-1"></fa-icon>Oops! Algo deu errado:
+  </h4>
+  <ul>
+    <li *ngFor="let notification of notifications">{{ notification.message }}</li>
+  </ul>
+</div>

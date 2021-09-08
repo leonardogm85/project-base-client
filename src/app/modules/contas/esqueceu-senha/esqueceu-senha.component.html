@@ -1,0 +1,33 @@
+<div class="row mt-2">
+  <div class="col-lg-5">
+
+    <div class="card">
+      <div class="card-header">
+        <fa-icon [icon]="iconUser" class="mr-1"></fa-icon>Esqueceu sua senha
+      </div>
+      <div class="card-body">
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+          <app-validation-summary [result]="notificationResult"></app-validation-summary>
+
+          <h4>Insira seu e-mail.</h4>
+          <hr />
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" formControlName="email" class="form-control" />
+            <app-validation-message [control]="form.get('email')"></app-validation-message>
+          </div>
+
+          <div class="form-group">
+            <div class="float-right">
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>

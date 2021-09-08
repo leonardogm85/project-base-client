@@ -1,0 +1,138 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-light mb-2">
+    <li class="breadcrumb-item active" aria-current="page">Fornecedores</li>
+  </ol>
+</nav>
+
+<div class="row mb-2" *appAuthorizedCreate>
+  <div class="col-lg-12">
+    <a routerLink="/fornecedores/adicionar" class="btn btn-primary">
+      <fa-icon [icon]="iconCreate" class="mr-1"></fa-icon>Adicionar
+    </a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <fa-icon [icon]="iconTable" class="mr-1"></fa-icon>Lista de fornecedores
+  </div>
+  <div class="card-body">
+
+    <div *ngIf="tableResult">
+
+      <table class="table table-hover table-striped table-sm border-bottom w-100 default-table">
+        <thead>
+          <tr>
+            <th scope="col" class="col-40" sortable="Nome" (sort)="onSort($event)">Nome</th>
+            <th scope="col" class="col-15" sortable="Documento" (sort)="onSort($event)">Documento</th>
+            <th scope="col" class="col-30 col-show-md" sortable="Email" (sort)="onSort($event)">Email</th>
+            <th scope="col" class="col-15 col-show-lg" sortable="Celular" (sort)="onSort($event)">Celular</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+          <tr>
+            <th>
+              <input class="form-control form-control-sm w-100" placeholder="Nome" autocomplete="off" searchable="Nome"
+                (search)="onSearch($event)">
+            </th>
+            <th>
+              <input class="form-control form-control-sm w-100" placeholder="Documento" autocomplete="off"
+                searchable="Documento" (search)="onSearch($event)">
+            </th>
+            <th class="col-show-md">
+              <input class="form-control form-control-sm w-100" placeholder="Email" autocomplete="off"
+                searchable="Email" (search)="onSearch($event)">
+            </th>
+            <th class="col-show-lg">
+              <input class="form-control form-control-sm w-100" placeholder="Celular" autocomplete="off"
+                searchable="Celular" (search)="onSearch($event)">
+            </th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <div *ngIf="tableResult.recordsFiltered === 0; then thenFiltered else elseFiltered"></div>
+
+          <ng-template #thenFiltered>
+            <tr>
+              <td colspan="8" class="text-center">
+                Nenhum registro encontrado.
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template #elseFiltered>
+            <tr *ngFor="let fornecedor of tableResult.data">
+              <td>{{ fornecedor.nome }}</td>
+              <td>{{ fornecedor.documento }}</td>
+              <td class="col-show-md">{{ fornecedor.email }}</td>
+              <td class="col-show-lg">{{ fornecedor.celular }}</td>
+              <td>
+                <div *appAuthorizedUpdate>
+                  <div *ngIf="fornecedor.ativo; then thenActive else elseActive"></div>
+
+                  <ng-template #thenActive>
+                    <button class="btn btn-outline-danger btn-sm" ngbTooltip="Desativar o registro"
+                      (click)="onDeactivate(fornecedor.id)">
+                      <fa-icon [icon]="iconDeactivate"></fa-icon>
+                    </button>
+                  </ng-template>
+
+                  <ng-template #elseActive>
+                    <button class="btn btn-outline-success btn-sm" ngbTooltip="Ativar o registro"
+                      (click)="onActivate(fornecedor.id)">
+                      <fa-icon [icon]="iconActivate"></fa-icon>
+                    </button>
+                  </ng-template>
+                </div>
+              </td>
+              <td>
+                <a [routerLink]="['/fornecedores/visualizar', fornecedor.id]" class="btn btn-info btn-sm"
+                  ngbTooltip="Visualizar o registro">
+                  <fa-icon [icon]="iconRead"></fa-icon>
+                </a>
+              </td>
+              <td>
+                <div *appAuthorizedUpdate>
+                  <a *ngIf="fornecedor.ativo" [routerLink]="['/fornecedores/atualizar', fornecedor.id]"
+                    class="btn btn-warning btn-sm" ngbTooltip="Atualizar o registro">
+                    <fa-icon [icon]="iconUpdate"></fa-icon>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <button class="btn btn-danger btn-sm" ngbTooltip="Remover o registro" (click)="onDelete(fornecedor.id)"
+                  *appAuthorizedDelete>
+                  <fa-icon [icon]="iconRemove"></fa-icon>
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="font-weight-bold">Nome</td>
+            <td class="font-weight-bold">Documento</td>
+            <td class="font-weight-bold col-show-md">Email</td>
+            <td class="font-weight-bold col-show-lg">Celular</td>
+            <td class="font-weight-bold" colspan="4"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="row">
+        <app-information class="col-lg mb-3" [start]="tableFilter.start" [length]="tableFilter.length"
+          [recordsFiltered]="tableResult.recordsFiltered" [recordsTotal]="tableResult.recordsTotal">
+        </app-information>
+
+        <app-pagination class="col-lg d-flex justify-content-end" [start]="tableFilter.start"
+          [length]="tableFilter.length" [recordsFiltered]="tableResult.recordsFiltered" (page)="onPage($event)">
+        </app-pagination>
+      </div>
+
+    </div>
+
+  </div>
+</div>

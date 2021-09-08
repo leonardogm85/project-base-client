@@ -1,0 +1,215 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+/* Default style */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+header {
+  height: 70px;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  line-height: 60px;
+}
+
+.hide {
+  display: none !important;
+}
+
+.custom-control-input:disabled:checked ~ .custom-control-label.custom-control-label-disabled::before {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+/* Table style */
+
+.default-table tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+.default-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.default-table thead tr:first-child th.col-sortable {
+  position: relative;
+  padding-right: 1.5rem;
+  cursor: pointer;
+}
+
+.default-table thead tr:first-child th:not(.col-sortable)::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+}
+
+.default-table thead tr:first-child th.col-sortable::after {
+  content: '\2191';
+  position: absolute;
+  right: 0.9rem;
+  opacity: 0.3;
+}
+
+.default-table thead tr:first-child th.col-sortable::before {
+  content: '\2193';
+  position: absolute;
+  right: 0.5rem;
+  opacity: 0.3;
+}
+
+.default-table thead tr:first-child th.col-ascending::after {
+  opacity: 1;
+}
+
+.default-table thead tr:first-child th.col-descending::before {
+  opacity: 1;
+}
+
+.default-table thead tr th.col-5 {
+  width: 5% !important;
+}
+
+.default-table thead tr th.col-10 {
+  width: 10% !important;
+}
+
+.default-table thead tr th.col-15 {
+  width: 15% !important;
+}
+
+.default-table thead tr th.col-20 {
+  width: 20% !important;
+}
+
+.default-table thead tr th.col-25 {
+  width: 25% !important;
+}
+
+.default-table thead tr th.col-30 {
+  width: 30% !important;
+}
+
+.default-table thead tr th.col-35 {
+  width: 35% !important;
+}
+
+.default-table thead tr th.col-40 {
+  width: 40% !important;
+}
+
+.default-table thead tr th.col-45 {
+  width: 45% !important;
+}
+
+.default-table thead tr th.col-50 {
+  width: 50% !important;
+}
+
+.default-table thead tr th.col-55 {
+  width: 55% !important;
+}
+
+.default-table thead tr th.col-60 {
+  width: 60% !important;
+}
+
+.default-table thead tr th.col-65 {
+  width: 65% !important;
+}
+
+.default-table thead tr th.col-70 {
+  width: 70% !important;
+}
+
+.default-table thead tr th.col-75 {
+  width: 75% !important;
+}
+
+.default-table thead tr th.col-80 {
+  width: 80% !important;
+}
+
+.default-table thead tr th.col-85 {
+  width: 85% !important;
+}
+
+.default-table thead tr th.col-90 {
+  width: 90% !important;
+}
+
+.default-table thead tr th.col-95 {
+  width: 95% !important;
+}
+
+.default-table thead tr th.col-100 {
+  width: 100% !important;
+}
+
+@media (max-width: 576px) {
+  .default-table thead tr th.col-show-sm, .default-table tbody tr td.col-show-sm, .default-table tfoot tr td.col-show-sm {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .default-table thead tr th.col-show-md, .default-table tbody tr td.col-show-md, .default-table tfoot tr td.col-show-md {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .default-table thead tr th.col-show-lg, .default-table tbody tr td.col-show-lg, .default-table tfoot tr td.col-show-lg {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .default-table thead tr th.col-show-xl, .default-table tbody tr td.col-show-xl, .default-table tfoot tr td.col-show-xl {
+    display: none;
+  }
+}
+
+/* Select style */
+
+.default-select.ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+  border-color: #80bdff;
+}
+
+.default-select.ng-select .ng-select-container {
+	min-height: calc(1.5em + 0.75rem + 2px);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.default-select.ng-select.ng-select-single .ng-select-container {
+	height: calc(1.5em + 0.75rem + 2px);
+}
+
+.default-select.ng-select .ng-clear-wrapper:hover .ng-clear {
+	color: #dc3545;
+}
+
+.default-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.default-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+	background-color: rgba(0, 0, 0, 0.075);
+}
+
+.default-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected .ng-option-label,
+.default-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked .ng-option-label {
+	font-weight: normal;
+}
+
+.default-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+	background-color: rgba(0, 0, 0, 0.05);
+}
