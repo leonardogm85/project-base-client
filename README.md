@@ -7,7 +7,7 @@ git clone https://github.com/leonardogm85/project-base-server.git
 ~~~
 
 ~~~
-git clone https://github.com/leonardogm85/project-base-server.git
+git clone https://github.com/leonardogm85/project-base-client.git
 ~~~
 
 2. Create the Docker network:
